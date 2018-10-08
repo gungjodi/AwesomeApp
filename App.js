@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { createStore, applyMiddleware,compose } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 
 import AppReducer from './src/reducers';
 import rootSaga from './src/sagas';
@@ -17,7 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 let store = createStore(
     AppReducer,
-    compose(applyMiddleware(sagaMiddleware))
+    compose(applyMiddleware(sagaMiddleware,logger))
 );
 
 sagaMiddleware.run(rootSaga);
